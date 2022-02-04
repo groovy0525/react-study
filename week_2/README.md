@@ -180,22 +180,90 @@ const users = [
 
 ## Object
 
+```js
+const user = { id: 1, name: "one", age: 20, gender: "male" };
+```
+
 - Object.values
+
+  ```js
+  const values = Object.values(user);
+
+  console.log(values); // [1, 'one', 20, 'male']
+  ```
+
 - Object.keys
+
+  ```js
+  const keys = Object.keys(user);
+
+  console.log(keys); // ['id', 'name', 'age', 'gender']
+  ```
+
 - Object.entries
+
+  ```js
+  const entry = Object.entries(user);
+
+  console.log(keys);
+  /*
+  [
+    ['id', 1], ['name', 'one'], ['age', 20], ['gender', 'male']
+  ]
+  */
+  ```
+
 - computed property가 무엇인지?
+
+  객체에 동적으로 (변수 등) 키를 생성할 수 있다.
+
+  ```js
+  const es = "ES";
+
+  const obj = {
+    [es + 6]: "ES6",
+  };
+
+  console.log(obj); // { ES6: 'ES6' }
+  ```
 
 ## ... Operator
 
 - spread operator가 무엇인지
+
+  참조 객체의 값을 복사하는 개념이지만 메모리 주소 값이 달라 다른 객체로 인식한다.
+
+  이 때 여러개의 참조 값을 가지는 경우, 가장 외부의 주소값만 바뀐다.
+
+  ```js
+  const numbers = [1, 2, 3];
+  const copiedNumbers = [...numbers];
+
+  console.log(numbers === copiedNumbers); // false
+
+  const newNumbers = [...numbers, 4];
+
+  console.log(newNumbers); // [ 1, 2, 3, 4 ]
+  ```
+
 - Rest Parameters가 무엇인지
+
+함수에 정해진 만큼의 매개변수가 들어오지 않는 경우 유용하게 사용 할 수 있다.
+
+```js
+const sum = (...args) => {
+  return args.reduce((acc, crr) => acc + crr, 0);
+};
+
+console.log(sum(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)); // 55
+```
 
 ## Arrow Functions
 
 - `const func = () ⇒ {}`, `function func () {}`, `const func = function () {}`위 3가지의 차이
 - arrow Function안의 this가 resolve되는 방식과 `function`으로 생성된 함수안에서의 this가 resolve되는 방식과 어떠한 차이가 있는지?
 
-## Smodules
+## ESmodules
 
 - `export`와 `export default`의 차이는?
 - `import` 와 동시에 다른 이름으로 변경하려면?
