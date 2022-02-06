@@ -248,19 +248,37 @@ const user = { id: 1, name: "one", age: 20, gender: "male" };
 
 - Rest Parameters가 무엇인지
 
-함수에 정해진 만큼의 매개변수가 들어오지 않는 경우 유용하게 사용 할 수 있다.
+  함수에 정해진 만큼의 매개변수가 들어오지 않는 경우 유용하게 사용 할 수 있다.
 
-```js
-const sum = (...args) => {
-  return args.reduce((acc, crr) => acc + crr, 0);
-};
+  ```js
+  const sum = (...args) => {
+    return args.reduce((acc, crr) => acc + crr, 0);
+  };
 
-console.log(sum(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)); // 55
-```
+  console.log(sum(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)); // 55
+  ```
 
 ## Arrow Functions
 
 - `const func = () ⇒ {}`, `function func () {}`, `const func = function () {}`위 3가지의 차이
+
+  `const func = () => {}` : 화살표 함수
+
+  - 화살표 함수는 함수 표현식과 비슷하게 변수를 선언하고 할당하는 개념이기 때문에 함수 선언문과는 호이스팅이 다르게 동작한다.
+
+    ```js
+    add(1, 3); // add is not defined
+    const add = (a, b) => a + b;
+
+    add(1, 3); // 4
+    function add(a, b) {
+      return a + b;
+    }
+    ```
+
+  - this
+  - 코드량을 많이 줄일 수 있다. ( 특히 return )
+
 - arrow Function안의 this가 resolve되는 방식과 `function`으로 생성된 함수안에서의 this가 resolve되는 방식과 어떠한 차이가 있는지?
 
 ## ESmodules
@@ -272,3 +290,7 @@ console.log(sum(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)); // 55
 ## 퀴즈 풀기!
 
 - 틀린거 오답노트 쓰기
+
+```
+
+```
