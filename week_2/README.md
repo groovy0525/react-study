@@ -107,6 +107,7 @@ function foo() {
 
 foo(); // 6
 ```
+![excution-context](https://user-images.githubusercontent.com/60678333/152904745-3c6de1d5-9993-4764-8b80-1ecd3ceb28b0.png)
 
 ## Lexical scope, 자바스크립트에서의 Closure 알아보기
 
@@ -467,3 +468,5 @@ const user = { id: 1, name: "one", age: 20, gender: "male" };
   arr; // Error - Uncaught ReferenceError: Cannot access 'y' before initialization
   // 전혀 모르겠음
   ```
+  ![aa](https://user-images.githubusercontent.com/60678333/152904780-cb0f127d-05e9-4351-b991-15896f017318.png)
+
