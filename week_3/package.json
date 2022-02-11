@@ -1,0 +1,16 @@
+{
+  "name": "nodejs-async",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^27.4.0",
+    "jest": "^27.4.7"
+  }
+}
