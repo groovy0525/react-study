@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import styled from "styled-components";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { Comment, CommentContext } from "../contexts/CommentContext";
@@ -23,6 +23,26 @@ function CommentItem({ comment }: CommentProps) {
       prev.filter(prevComment => prevComment.id !== comment.id)
     );
   };
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      if (comment.existTime >= 30) {
+        setComment(prev =>
+          prev.filter(prevComment => prevComment.id !== comment.id)
+        );
+      }
+      setComment(prev =>
+        prev.map(prevComment =>
+          prevComment.id === comment.id
+            ? { ...prevComment, existTime: prevComment.existTime + 1 }
+            : prevComment
+        )
+      );
+    }, 1000);
+    return () => {
+      clearInterval(timer);
+    };
+  }, [comment, setComment]);
 
   return (
     <CommentBox>

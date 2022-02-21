@@ -26,6 +26,7 @@ function CommentForm() {
       id: Date.now(),
       comment: text,
       date: `${date.getFullYear()}. ${date.getMonth()}. ${date.getDate()}`,
+      existTime: 1,
     };
     setComment(prev => [...prev, comment]);
     setText("");

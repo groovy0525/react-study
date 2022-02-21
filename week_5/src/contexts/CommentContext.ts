@@ -5,6 +5,7 @@ export interface Comment {
   comment: string;
   date: string;
   user: string;
+  existTime: number;
 }
 
 interface ICommentContext {
