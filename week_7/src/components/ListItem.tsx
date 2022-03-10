@@ -1,15 +1,43 @@
 import styled from "@emotion/styled";
+import { useAppDispatch } from "../app/hooks";
+import { add } from "../features/cart/cartSlice";
+import moneyConversion from "../lib/moneyConversion";
+import { Menu } from "../types";
 
 interface ListItemProps {
-  name: string;
-  price?: number;
+  name?: string;
+  menu?: Menu;
+  type: keyof typeof ListType;
+  children?: React.ReactNode;
 }
 
-function ListItem({ name, price }: ListItemProps) {
+enum ListType {
+  Category = "category",
+  Menu = "menu",
+}
+
+function ListItem({ name, menu, type, children }: ListItemProps) {
+  const dispatch = useAppDispatch();
+
+  const price = menu?.price;
+
+  const handleAddCart = () => {
+    if (menu) {
+      dispatch(add(menu));
+    }
+  };
+
   return (
     <Base>
-      <Name>{name}</Name>
-      <Price>{price}</Price>
+      {type === "Category" ? (
+        <Category>{name}</Category>
+      ) : (
+        <Detail onClick={handleAddCart}>
+          <Name>{menu?.name}</Name>
+          {price && <Price>{moneyConversion(price)}</Price>}
+        </Detail>
+      )}
+      {children}
     </Base>
   );
 }
@@ -17,9 +45,43 @@ function ListItem({ name, price }: ListItemProps) {
 export default ListItem;
 
 const Base = styled.li`
-  display: flex;
+  padding: 0 20px;
+  background-color: #fff;
+
+  & + & {
+    margin-top: 16px;
+  }
+
+  &:last-of-type {
+    padding-bottom: 10px;
+  }
+
+  li {
+    padding: 0;
+  }
 `;
 
-const Name = styled.h3``;
+const Category = styled.h3`
+  margin: 0;
+  height: 60px;
+  line-height: 60px;
+  font-size: 14px;
+`;
 
-const Price = styled.span``;
+const Detail = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 60px;
+  cursor: pointer;
+`;
+
+const Name = styled.h4`
+  margin: 0;
+  font-size: 12px;
+`;
+
+const Price = styled.span`
+  font-size: 10px;
+  color: #a199a1;
+`;

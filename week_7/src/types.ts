@@ -1,5 +1,10 @@
 import { SerializedError } from "@reduxjs/toolkit";
 
+export interface Category {
+  id: string;
+  name: string;
+}
+
 export interface Menu {
   id: string;
   category_id: string;
@@ -25,4 +30,8 @@ export interface MenuState {
   loading: boolean;
   data: StoreInfo | null;
   error: SerializedError | null;
+}
+
+export interface Order extends Menu {
+  count: number;
 }

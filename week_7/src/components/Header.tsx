@@ -6,4 +6,11 @@ const Header: React.FC = ({ children }) => {
 
 export default Header;
 
-const Base = styled.header``;
+const Base = styled.header`
+  display: flex;
+  align-items: center;
+  height: 42px;
+  margin-bottom: 16px;
+  padding: 0 20px;
+  background-color: #fff;
+`;

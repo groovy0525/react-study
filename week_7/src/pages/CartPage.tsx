@@ -1,5 +1,7 @@
+import Layout from "../components/Layout";
+
 function CartPage() {
-  return <div>CartPage</div>;
+  return <Layout>CartPage</Layout>;
 }
 
 export default CartPage;
