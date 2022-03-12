@@ -1,13 +1,18 @@
 import styled from "@emotion/styled";
 
-const Layout: React.FC = ({ children }) => {
+interface LayoutProps {
+  children: React.ReactNode;
+}
+
+function Layout({ children }: LayoutProps) {
   return <Base>{children}</Base>;
-};
+}
 
 export default Layout;
 
 const Base = styled.div`
   overflow-y: auto;
+  position: relative;
   width: 270px;
   height: 540px;
   margin: 50px auto;

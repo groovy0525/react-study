@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { RootState } from "../../app/store";
 import { MenuState } from "../../types";
 import { getMenuList } from "./menuAPI";
 
@@ -33,5 +34,11 @@ const menuSlice = createSlice({
       });
   },
 });
+
+export const loading = (state: RootState) => state.menu.loading;
+export const storeInfo = (state: RootState) => state.menu.data;
+export const discounts = (state: RootState) => state.menu.data?.discounts;
+export const minimuPrice = (state: RootState) =>
+  state.menu.data?.minimum_order_price;
 
 export default menuSlice.reducer;

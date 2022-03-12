@@ -1,11 +1,11 @@
 import styled from "@emotion/styled";
 import { useAppSelector } from "../app/hooks";
-import { RootState } from "../app/store";
+import { storeInfo } from "../features/menu/menuSlice";
 import { Category } from "../types";
 import ListItem from "./ListItem";
 
 function MenuList() {
-  const menuList = useAppSelector((state: RootState) => state.menu.data?.items);
+  const menuList = useAppSelector(storeInfo)?.items;
   const categories: Category[] = Array.from(
     new Set(
       menuList?.map(menu =>

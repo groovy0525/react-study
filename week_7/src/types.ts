@@ -34,4 +34,5 @@ export interface MenuState {
 
 export interface Order extends Menu {
   count: number;
+  discountAmout: number;
 }
