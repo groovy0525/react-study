@@ -64,11 +64,11 @@ const Info = styled.div`
 `;
 
 const ProductName = styled.span`
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
 `;
 
 const DiscountCost = styled.span`
-  font-size: 10px;
+  font-size: 12px;
   color: #f00;
 `;

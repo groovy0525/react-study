@@ -85,7 +85,7 @@ const Name = styled.p`
   align-items: center;
   justify-content: space-between;
   margin-top: 0;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
 `;
 

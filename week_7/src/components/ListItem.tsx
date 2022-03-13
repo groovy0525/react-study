@@ -65,7 +65,7 @@ const Category = styled.h3`
   margin: 0;
   height: 60px;
   line-height: 60px;
-  font-size: 14px;
+  font-size: 16px;
 `;
 
 const Detail = styled.div`
@@ -78,10 +78,10 @@ const Detail = styled.div`
 
 const Name = styled.h4`
   margin: 0;
-  font-size: 12px;
+  font-size: 14px;
 `;
 
 const Price = styled.span`
-  font-size: 10px;
+  font-size: 12px;
   color: #a199a1;
 `;

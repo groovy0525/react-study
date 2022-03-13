@@ -69,11 +69,12 @@ const Info = styled.div`
 
 const Name = styled.h4`
   margin: 0;
-  font-size: 12px;
+  font-size: 14px;
 `;
 
 const Price = styled.span`
-  font-size: 10px;
+  margin-top: 4px;
+  font-size: 12px;
   color: #a199a1;
 `;
 
@@ -83,7 +84,7 @@ const ButtonBox = styled.div`
   justify-content: center;
   align-items: flex-end;
   margin-left: auto;
-  padding: 12px 0;
+  padding: 10px 0;
 `;
 
 const Quantities = styled.div`

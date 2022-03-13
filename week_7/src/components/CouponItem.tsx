@@ -97,15 +97,15 @@ const Info = styled.div`
 `;
 
 const Name = styled.span`
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
 `;
 
 const Button = styled.button<{ checked: boolean }>`
-  height: 20px;
+  height: 24px;
   border-radius: 4px;
   background-color: #eee;
-  font-size: 10px;
+  font-size: 12px;
   border: none;
   outline: none;
   color: ${({ checked }) => (checked ? "#000" : "#828182")};
@@ -117,6 +117,6 @@ const Button = styled.button<{ checked: boolean }>`
 `;
 
 const Rate = styled.span`
-  font-size: 10px;
+  font-size: 12px;
   color: #a199a1;
 `;

@@ -30,6 +30,6 @@ const Term = styled.dt`
   margin: 0;
   height: 60px;
   line-height: 60px;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
 `;

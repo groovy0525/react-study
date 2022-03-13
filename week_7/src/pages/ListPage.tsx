@@ -82,7 +82,7 @@ const Loading = styled.div`
 
 const ShopTitle = styled.h2`
   margin: 0;
-  font-size: 16px;
+  font-size: 18px;
 `;
 
 const StyledLink = styled(Link)`
@@ -92,7 +92,7 @@ const StyledLink = styled(Link)`
   font-weight: 500;
 
   > span:first-of-type {
-    font-size: 14px;
+    font-size: 16px;
   }
 
   > span:last-of-type {
@@ -101,7 +101,7 @@ const StyledLink = styled(Link)`
     height: 15px;
     margin-left: 6px;
     background-color: #edeced;
-    font-size: 10px;
+    font-size: 12px;
     text-align: center;
     line-height: 15px;
   }
