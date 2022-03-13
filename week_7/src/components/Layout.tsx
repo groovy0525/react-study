@@ -12,12 +12,10 @@ export default Layout;
 
 const Base = styled.div`
   overflow-y: auto;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
   width: 270px;
   height: 640px;
+  margin: 100px auto;
   box-sizing: border-box;
   border-radius: 10px;
   box-shadow: 2px 2px 5px 3px rgba(0, 0, 0, 0.3);
