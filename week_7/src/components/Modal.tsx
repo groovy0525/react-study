@@ -1,22 +1,39 @@
 import styled from "@emotion/styled";
+import { useEffect } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { useAppSelector } from "../app/hooks";
 import { selectOrders } from "../features/cart/cartSlice";
+import { Coupon } from "../types";
 import DiscountItem from "./DiscountItem";
 
 interface ModalProps {
-  name: string;
+  coupon: Coupon;
   onClose: () => void;
+  setChecked: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function Modal({ name, onClose }: ModalProps) {
+function Modal({ onClose, coupon, setChecked }: ModalProps) {
   const discountList = useAppSelector(selectOrders);
+
+  useEffect(() => {
+    let isEmpty: boolean = false;
+    discountList.forEach(item => {
+      const exist = item.discount.find(c => c.id === coupon.id);
+
+      if (exist) {
+        isEmpty = true;
+      }
+    });
+    if (!isEmpty) {
+      setChecked(false);
+    }
+  }, [discountList, coupon, setChecked]);
 
   return (
     <Base>
       <Content>
         <Name>
-          {name}
+          {coupon.name}
           <CloseButton onClick={onClose}>
             <AiOutlineClose />
           </CloseButton>
@@ -24,7 +41,7 @@ function Modal({ name, onClose }: ModalProps) {
         {discountList && (
           <ul>
             {discountList.map(item => (
-              <DiscountItem key={item.id} item={item} />
+              <DiscountItem key={item.id} item={item} coupon={coupon} />
             ))}
           </ul>
         )}

@@ -39,8 +39,8 @@ function CartPage() {
                 : moneyConversion(0)}
             </span>
           </p>
-          <PaymentButton isPossible={minimumPrice < totalPrice}>
-            {minimumPrice < totalPrice
+          <PaymentButton isPossible={minimumPrice <= totalPrice}>
+            {minimumPrice <= totalPrice
               ? "주문하기"
               : `최소 주문 금액은 ${minimumPrice}원 입니다`}
           </PaymentButton>

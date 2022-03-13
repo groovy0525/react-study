@@ -3,12 +3,16 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Coupon } from "../types";
 import Modal from "./Modal";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { discount, selectOrders } from "../features/cart/cartSlice";
 
 interface CouponItemProps {
   coupon: Coupon;
 }
 
 function CouponItem({ coupon }: CouponItemProps) {
+  const dispatch = useAppDispatch();
+  const orders = useAppSelector(selectOrders);
   const [checked, setChecked] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -16,9 +20,37 @@ function CouponItem({ coupon }: CouponItemProps) {
     setIsOpen(prev => !prev);
   }, []);
 
-  const handleChecked = useCallback(() => {
+  const handleChecked = () => {
+    let isChecked = !checked;
     setChecked(prev => !prev);
-  }, []);
+
+    if (isChecked) {
+      orders.forEach(order => {
+        dispatch(
+          discount({
+            id: order.id,
+            checked: true,
+            coupon,
+          })
+        );
+      });
+      return;
+    } else {
+      orders.forEach(order => {
+        const exist = order.discount.find(c => c.id === coupon.id);
+
+        if (exist) {
+          dispatch(
+            discount({
+              id: order.id,
+              checked: false,
+              coupon,
+            })
+          );
+        }
+      });
+    }
+  };
 
   return (
     <Base>
@@ -32,7 +64,9 @@ function CouponItem({ coupon }: CouponItemProps) {
       <Button disabled={!checked} checked={checked} onClick={handleOpen}>
         메뉴 선택
       </Button>
-      {isOpen && <Modal name={coupon.name} onClose={handleOpen} />}
+      {isOpen && (
+        <Modal onClose={handleOpen} coupon={coupon} setChecked={setChecked} />
+      )}
     </Base>
   );
 }

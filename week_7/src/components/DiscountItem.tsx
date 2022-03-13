@@ -1,22 +1,38 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
+import { useAppDispatch } from "../app/hooks";
+import { discount } from "../features/cart/cartSlice";
 import moneyConversion from "../lib/moneyConversion";
-import { Order } from "../types";
+import { Coupon, Order } from "../types";
 
 interface DiscountItemProps {
   item: Order;
+  coupon: Coupon;
 }
 
-function DiscountItem({ item }: DiscountItemProps) {
-  const [checked, setChecked] = useState<boolean>(item.discountAmout > 0);
+function DiscountItem({ item, coupon }: DiscountItemProps) {
+  const dispatch = useAppDispatch();
+  const isDiscount = item.discount.find(el => el.id === coupon.id);
+  const [isChecked, setIsChecked] = useState<boolean>(
+    isDiscount ? true : false
+  );
 
   const handleChecked = () => {
-    setChecked(prev => !prev);
+    let checked = !isChecked;
+    setIsChecked(prev => !prev);
+
+    dispatch(
+      discount({
+        id: item.id,
+        checked,
+        coupon,
+      })
+    );
   };
 
   return (
     <Base>
-      <input type="checkbox" checked={checked} onChange={handleChecked} />
+      <input type="checkbox" checked={isChecked} onChange={handleChecked} />
       <Info>
         <ProductName>
           {item.name} x {item.count}

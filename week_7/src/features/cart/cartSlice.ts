@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
-import { Menu, Order } from "../../types";
+import { Coupon, Menu, Order } from "../../types";
 
 interface CartState {
   totalCount: number;
@@ -27,7 +27,11 @@ const cartSlice = createSlice({
       );
 
       if (idx === -1) {
-        state.orders.push({ ...action.payload, count: 1, discountAmout: 0 });
+        state.orders.push({
+          ...action.payload,
+          count: 1,
+          discount: [],
+        });
       } else {
         state.orders[idx].count += 1;
       }
@@ -65,28 +69,32 @@ const cartSlice = createSlice({
     },
     discount: (
       state,
-      action: PayloadAction<{ id: string; discount: number }>
+      action: PayloadAction<{ id: string; checked: boolean; coupon: Coupon }>
     ) => {
-      const idx = state.orders.findIndex(
-        order => order.id === action.payload.id
-      );
+      const { id, checked, coupon } = action.payload;
+      const idx = state.orders.findIndex(order => order.id === id);
 
       if (idx > -1) {
-        state.orders[idx].discountAmout += action.payload.discount;
-        state.totalPrice += action.payload.discount;
+        const orderItem = state.orders[idx];
+        const discountAmount =
+          orderItem.price * orderItem.count * (coupon.discount_rate / 100);
+
+        if (checked) {
+          orderItem.discount.push(coupon);
+          state.totalPrice -= discountAmount;
+        } else {
+          const couponIndex = state.orders[idx].discount.findIndex(
+            c => c.id === coupon.id
+          );
+          orderItem.discount.splice(couponIndex, 1);
+          state.totalPrice += discountAmount;
+        }
       }
-    },
-    discountAll: (state, action: PayloadAction<number>) => {
-      state.orders.forEach(order => {
-        const price = order.price * order.count;
-        order.discountAmout += price * (action.payload / 100);
-        state.totalPrice += order.discountAmout;
-      });
     },
   },
 });
 
-export const { add, increment, decrement, remove, discount, discountAll } =
+export const { add, increment, decrement, remove, discount } =
   cartSlice.actions;
 
 export const selectOrders = (state: RootState) => state.cart.orders;
